@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIF and Buttons</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* background-color: #f0f0f0; */
+    }
+
+    #gif-container {
+      text-align: center;
+    }
+    p {
+      font-size: 40px;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    #button1 {
+      background-color: green;
+      font-size: 18px;
+    }
+
+    #button2 {
+      background-color: red;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 600px) {
+      p {
+        font-size: 16px;
+      }
+
+      button {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="gif-container">
+    <img id="main-gif" src="https://media1.tenor.com/m/al4a1pG1f8YAAAAC/jump-bear.gif" alt="Your GIF" width="300">
+    <p>Will you be my Valentine?</p>
+    <button id="button1" onclick="showThankYou()">Yes</button>
+    <button id="button2"  onclick="changeButtonText()">No</button>
+
+    <div id="thank-you" class="hidden">
+        <img id="thank-you-gif" src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="Thank You GIF" width="300">
+      <p>Ok yay!!</p>
+      </div>
+
+  </div>
+  <script>
+       let button2Clicked = 0;
+    const phrases = [
+      "Are you sure?", 
+      "Really sure?", 
+      "Think Again", 
+      "Last Chance", 
+      "Surely not?", 
+      "You might regret this", 
+      "Give it another thought!", 
+      "Are you absolutely certain?", 
+      "This could be a mistake", 
+      "Have a heart", 
+      "Don't be so cold", 
+      "Change of heart?", 
+      "Wouldn't you reconsider?", 
+      "Is that your final answer?", 
+      "You're breaking my heart :'("
+    ];
+
+    function changeButtonText() {
+      button2Clicked++;
+      let index = button2Clicked % phrases.length;
+      document.getElementById('button2').textContent = phrases[index];
+      increaseButtonSize();
+    }
+    
+    function increaseButtonSize() {
+      let button1 = document.getElementById('button1');
+      let currentSize = parseInt(window.getComputedStyle(button1, null).getPropertyValue('font-size'));
+      button1.style.fontSize = (currentSize + 5) + 'px';
+    }
+
+   
+    function showThankYou() {
+      let thankYouDiv = document.getElementById('thank-you');
+      let mainGif = document.getElementById('main-gif');
+      let mainText = document.querySelector('p');
+      let button1 = document.getElementById('button1');
+      let button2 = document.getElementById('button2');
+
+      thankYouDiv.classList.remove('hidden');
+      mainGif.classList.add('hidden');
+      mainText.classList.add('hidden');
+      button1.classList.add('hidden');
+      button2.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
